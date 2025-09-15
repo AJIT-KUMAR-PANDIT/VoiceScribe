@@ -378,14 +378,14 @@ export function TranscriptionScreen() {
       <div className="grid grid-cols-2 gap-4">
         <Button
           variant="outline"
-          className="h-14 bg-white/10 border-white/30  hover:bg-white/20 text-lg"
+          className="h-14 bg-white/10 border-white/30   text-lg"
         >
           <Volume2 className="w-5 h-5 mr-3" />
           Play Back
         </Button>
         <Button
           variant="outline"
-          className="h-14 bg-white/10 border-white/30  hover:bg-white/20 text-lg"
+          className="h-14 bg-white/10 border-white/30   text-lg"
         >
           <Mic className="w-5 h-5 mr-3" />
           Voice Commands
