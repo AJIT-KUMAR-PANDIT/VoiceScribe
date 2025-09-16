@@ -163,7 +163,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto transition-all duration-300">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Download className="w-5 h-5" />
@@ -174,7 +174,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
 
         <div className="space-y-6">
           {/* Export Summary */}
-          <Card className="p-4">
+          <Card className="p-4 transition-transform duration-200 hover:scale-[1.01]">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-primary">
@@ -204,8 +204,8 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                 return (
                   <Card
                     key={format.value}
-                    className={`p-3 cursor-pointer transition-colors ${
-                      exportSettings.format === format.value ? "border-primary bg-primary/5" : "hover:bg-muted/50"
+                    className={`p-3 cursor-pointer transition-colors duration-200 hover:bg-muted/50 ${
+                      exportSettings.format === format.value ? "border-primary bg-primary/5" : ""
                     }`}
                     onClick={() => setExportSettings((prev) => ({ ...prev, format: format.value }))}
                   >
@@ -228,7 +228,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
             <Label className="text-base font-semibold">Export Options</Label>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between transition-transform duration-200 hover:scale-[1.01] p-2 rounded-md">
                 <div>
                   <Label className="text-sm font-medium">Include Timestamps</Label>
                   <p className="text-xs text-muted-foreground">Add time markers to text</p>
@@ -239,7 +239,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between transition-transform duration-200 hover:scale-[1.01] p-2 rounded-md">
                 <div>
                   <Label className="text-sm font-medium">Include Confidence</Label>
                   <p className="text-xs text-muted-foreground">Show accuracy scores</p>
@@ -250,7 +250,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between transition-transform duration-200 hover:scale-[1.01] p-2 rounded-md">
                 <div>
                   <Label className="text-sm font-medium">Include Metadata</Label>
                   <p className="text-xs text-muted-foreground">Add file information</p>
@@ -261,7 +261,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between transition-transform duration-200 hover:scale-[1.01] p-2 rounded-md">
                 <div>
                   <Label className="text-sm font-medium">Merge Files</Label>
                   <p className="text-xs text-muted-foreground">Combine into single file</p>
@@ -281,6 +281,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
               value={exportSettings.fileName}
               onChange={(e) => setExportSettings((prev) => ({ ...prev, fileName: e.target.value }))}
               placeholder="Enter file name"
+              className="transition-all duration-200 focus:border-primary focus:ring-primary"
             />
             <p className="text-xs text-muted-foreground">Extension will be added automatically based on format</p>
           </div>
@@ -293,7 +294,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                 value={exportSettings.dateRange}
                 onValueChange={(value) => setExportSettings((prev) => ({ ...prev, dateRange: value }))}
               >
-                <SelectTrigger>
+                <SelectTrigger className="transition-all duration-200 hover:border-primary focus:ring-primary">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -312,7 +313,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                 value={exportSettings.language}
                 onValueChange={(value) => setExportSettings((prev) => ({ ...prev, language: value }))}
               >
-                <SelectTrigger>
+                <SelectTrigger className="transition-all duration-200 hover:border-primary focus:ring-primary">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -337,7 +338,7 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
                     variant="outline"
                     size="sm"
                     onClick={() => handleShare(option.value)}
-                    className="flex-1"
+                    className="flex-1 transition-transform duration-220 hover:scale-[1.02]"
                   >
                     <Icon className="w-4 h-4 mr-2" />
                     {option.label}
@@ -349,10 +350,10 @@ export function ExportModal({ isOpen, onClose, transcripts = [], selectedTranscr
         </div>
 
         <DialogFooter className="gap-2">
-          <Button variant="outline" onClick={onClose}>
+          <Button variant="outline" onClick={onClose} className="transition-transform duration-200 hover:scale-95">
             Cancel
           </Button>
-          <Button onClick={handleExport} disabled={isExporting}>
+          <Button onClick={handleExport} disabled={isExporting} className="transition-transform duration-200 hover:scale-[1.02]">
             {isExporting ? (
               <>
                 <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2" />

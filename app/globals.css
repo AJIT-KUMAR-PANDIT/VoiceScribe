@@ -10,41 +10,6 @@
 /* TV/4K: 1920px+ */
 
 :root {
-  /* Updated color tokens to match transcription app design brief */
-  --background: oklch(1 0 0); /* White background */
-  --foreground: oklch(0.35 0 0); /* Dark gray text */
-  --card: oklch(0.98 0 0); /* Light gray card background */
-  --card-foreground: oklch(0.35 0 0); /* Dark gray text on cards */
-  --popover: oklch(1 0 0); /* White popover background */
-  --popover-foreground: oklch(0.35 0 0); /* Dark gray text in popovers */
-  --primary: oklch(0.55 0.15 200); /* Cyan-600 primary color */
-  --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.6 0.2 260); /* Blue accent color */
-  --secondary-foreground: oklch(1 0 0); /* White text on secondary */
-  --muted: oklch(0.98 0 0); /* Light gray muted background */
-  --muted-foreground: oklch(0.35 0 0); /* Dark gray muted text */
-  --accent: oklch(0.6 0.2 260); /* Blue accent color */
-  --accent-foreground: oklch(1 0 0); /* White text on accent */
-  --destructive: oklch(0.5 0.2 25); /* Red destructive color */
-  --destructive-foreground: oklch(1 0 0); /* White text on destructive */
-  --border: oklch(0.9 0 0); /* Light border color */
-  --input: oklch(0.98 0 0); /* Light input background */
-  --ring: oklch(0.55 0.15 200 / 0.5); /* Primary color focus ring */
-  --chart-1: oklch(0.6 0.2 260); /* Blue chart color */
-  --chart-2: oklch(0.55 0.15 200); /* Cyan chart color */
-  --chart-3: oklch(0.5 0.2 25); /* Red chart color */
-  --chart-4: oklch(0.98 0 0); /* Light chart color */
-  --chart-5: oklch(0.35 0 0); /* Dark chart color */
-  --radius: 0.5rem; /* Rounded corners */
-  --sidebar: oklch(0.98 0 0); /* Light sidebar background */
-  --sidebar-foreground: oklch(0.35 0 0); /* Dark sidebar text */
-  --sidebar-primary: oklch(0.55 0.15 200); /* Primary sidebar color */
-  --sidebar-primary-foreground: oklch(1 0 0); /* White text on primary sidebar */
-  --sidebar-accent: oklch(0.6 0.2 260); /* Accent sidebar color */
-  --sidebar-accent-foreground: oklch(1 0 0); /* White text on accent sidebar */
-  --sidebar-border: oklch(0.9 0 0); /* Light sidebar border */
-  --sidebar-ring: oklch(0.55 0.15 200 / 0.5); /* Primary focus ring for sidebar */
-  
   /* 3D Effects Variables */
   --shadow-3d: 0 20px 60px -10px rgba(0, 0, 0, 0.3);
   --shadow-glow: 0 0 30px rgba(6, 182, 212, 0.5);
@@ -288,6 +253,126 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+@media (min-width: 768px) {
+  .responsive-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    gap: 2rem;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-foreground);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 0 0% 98%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .colorful {
+    --background: var(--theme-color-background, var(--background));
+    --foreground: var(--theme-color-foreground, var(--foreground));
+    --card: var(--theme-color-card, var(--card));
+    --card-foreground: var(--theme-color-card-foreground, var(--card-foreground));
+    --popover: var(--theme-color-popover, var(--popover));
+    --popover-foreground: var(--theme-color-popover-foreground, var(--popover-foreground));
+    --primary: var(--theme-color);
+    --primary-foreground: var(--theme-color-primary-foreground, 0 0% 98%);
+    --secondary: var(--theme-color-secondary, 240 4.8% 95.9%);
+    --secondary-foreground: var(--theme-color-secondary-foreground, 240 5.9% 10%);
+    --muted: var(--theme-color-muted, 240 4.8% 95.9%);
+    --muted-foreground: var(--theme-color-muted-foreground, 240 3.8% 46.1%);
+    --accent: var(--theme-color-accent, 240 4.8% 95.9%);
+    --accent-foreground: var(--theme-color-accent-foreground, 240 5.9% 10%);
+    --destructive: var(--theme-color-destructive, 0 84.2% 60.2%);
+    --destructive-foreground: var(--theme-color-destructive-foreground, 0 0% 98%);
+    --border: var(--theme-color-border, 240 5.9% 90%);
+    --input: var(--theme-color-input, 240 5.9% 90%);
+    --ring: var(--theme-color);
+    --chart-1: var(--theme-color-chart-1, 12 76% 61%);
+    --chart-2: var(--theme-color-chart-2, 173 58% 39%);
+    --chart-3: var(--theme-color-chart-3, 197 37% 24%);
+    --chart-4: var(--theme-color-chart-4, 43 74% 66%);
+    --chart-5: var(--theme-color-chart-5, 27 87% 67%);
+  }
 }
 
 @media (min-width: 768px) {

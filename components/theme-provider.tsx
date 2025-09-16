@@ -5,7 +5,26 @@ import {
   ThemeProvider as NextThemesProvider,
   type ThemeProviderProps,
 } from 'next-themes'
+import { useThemeColor } from "./theme-color-provider";
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+export function ThemeProvider({
+  children,
+  ...props
+}: ThemeProviderProps) {
+  const { themeColor } = useThemeColor();
+
+  return (
+    <NextThemesProvider
+      {...props}
+      value={{
+        light: "light",
+        dark: "dark",
+        system: "system",
+        colorful: "colorful",
+        ...props.value,
+      }}
+    >
+      {children}
+    </NextThemesProvider>
+  );
 }

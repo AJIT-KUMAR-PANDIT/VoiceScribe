@@ -118,7 +118,7 @@ export function HistoryScreen() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 pb-24">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 pb-24 transition-colors duration-300">
       {/* Header */}
       <div className="text-center space-y-2">
         <h1 className="text-2xl sm:text-3xl font-bold">Transcript History</h1>
@@ -128,7 +128,7 @@ export function HistoryScreen() {
       </div>
 
       {/* Search + Filters */}
-      <Card className="p-4 space-y-4">
+      <Card className="p-4 space-y-4 transition-transform duration-200 hover:scale-[1.01]">
         <div className="flex flex-col lg:flex-row gap-4 lg:items-center">
           {/* Search */}
           <div className="relative flex-1">
@@ -143,8 +143,8 @@ export function HistoryScreen() {
 
           {/* Filters */}
           <div className="flex flex-wrap gap-2">
-            <Select value={filterBy} onValueChange={setFilterBy}>
-              <SelectTrigger className="w-36 sm:w-40">
+            <Select value={filterBy} onValueChange={setFilterBy} className="transition-transform duration-200 hover:scale-[1.01]">
+                <SelectTrigger className="w-36 sm:w-40">
                 <Filter className="w-4 h-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
@@ -158,7 +158,7 @@ export function HistoryScreen() {
             </Select>
 
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-28 sm:w-32">
+              <SelectTrigger className="w-28 sm:w-32 transition-transform duration-200 hover:scale-[1.01]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -190,6 +190,7 @@ export function HistoryScreen() {
                 variant="outline"
                 size="sm"
                 onClick={() => setShowExportModal(true)}
+                className="w-full sm:w-auto transition-transform duration-200 hover:scale-[1.01]"
               >
                 <Download className="w-3 h-3 mr-1" />
                 <span className="hidden sm:inline">
@@ -197,7 +198,7 @@ export function HistoryScreen() {
                 </span>
               </Button>
             )}
-            <Button variant="outline" size="sm" onClick={handleExportAll}>
+            <Button variant="outline" size="sm" onClick={handleExportAll} className="transition-transform duration-200 hover:scale-105">
               <Download className="w-3 h-3 mr-1" />
               <span className="hidden sm:inline">Export All</span>
             </Button>
@@ -208,7 +209,7 @@ export function HistoryScreen() {
       {/* Transcript List */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filteredTranscripts.length === 0 ? (
-          <Card className="p-8 text-center col-span-full">
+          <Card className="p-8 text-center col-span-full transition-transform duration-200 hover:scale-[1.01]">
             <FileText className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-lg font-semibold">No transcripts found</h3>
             <p className="text-muted-foreground text-sm">
@@ -219,7 +220,7 @@ export function HistoryScreen() {
           </Card>
         ) : (
           filteredTranscripts.map((t) => (
-            <Card key={t.id} className="p-4 hover:shadow-lg transition-shadow">
+            <Card key={t.id} className="p-4 hover:shadow-lg transition-shadow transition-transform duration-200 hover:scale-[1.01]">
               {/* Header */}
               <div className="flex items-start justify-between">
                 <div className="flex gap-3 flex-1">
@@ -263,6 +264,7 @@ export function HistoryScreen() {
                   variant="ghost"
                   size="sm"
                   onClick={() => handleToggleFavorite(t.id)}
+                  className="transition-transform duration-200 hover:scale-105"
                 >
                   {t.isFavorite ? (
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -283,14 +285,14 @@ export function HistoryScreen() {
               {/* Actions */}
               <div className="flex justify-between mt-3 flex-wrap gap-2">
                 <div className="flex flex-wrap gap-2">
-                  <Button variant="outline" size="sm" className="flex-1">
+                  <Button variant="outline" size="sm" className="flex-1 transition-transform duration-200 hover:scale-105">
                     <Play className="w-3 h-3 mr-1" />
                     Play
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1"
+                    className="flex-1 transition-transform duration-200 hover:scale-105"
                     onClick={() => handleAIInteraction(t)}
                   >
                     <MessageSquare className="w-3 h-3 mr-1" />
@@ -301,13 +303,13 @@ export function HistoryScreen() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1"
+                    className="flex-1 transition-transform duration-200 hover:scale-105"
                     onClick={() => handleExportTranscript(t)}
                   >
                     <Download className="w-3 h-3 mr-1" />
                     Export
                   </Button>
-                  <Button variant="outline" size="sm" className="flex-1">
+                  <Button variant="outline" size="sm" className="flex-1 transition-transform duration-200 hover:scale-105">
                     <Trash2 className="w-3 h-3 mr-1" />
                     Delete
                   </Button>

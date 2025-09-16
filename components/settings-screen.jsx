@@ -116,7 +116,7 @@ export function SettingsScreen() {
   }
 
   return (
-    <div className="p-6 space-y-6 pb-20">
+    <div className="p-6 space-y-6 pb-20 transition-colors duration-300">
       {/* Header */}
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold text-foreground">Settings</h1>
@@ -125,19 +125,19 @@ export function SettingsScreen() {
 
       <Tabs defaultValue="audio" className="space-y-6">
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="audio" className="flex items-center gap-2">
+          <TabsTrigger value="audio" className="flex items-center gap-2 transition-transform duration-200 hover:scale-105">
             <Mic className="w-4 h-4" />
             Audio
           </TabsTrigger>
-          <TabsTrigger value="ai" className="flex items-center gap-2">
+          <TabsTrigger value="ai" className="flex items-center gap-2 transition-transform duration-200 hover:scale-105">
             <Bot className="w-4 h-4" />
             AI
           </TabsTrigger>
-          <TabsTrigger value="privacy" className="flex items-center gap-2">
+          <TabsTrigger value="privacy" className="flex items-center gap-2 transition-transform duration-200 hover:scale-105">
             <Shield className="w-4 h-4" />
             Privacy
           </TabsTrigger>
-          <TabsTrigger value="advanced" className="flex items-center gap-2">
+          <TabsTrigger value="advanced" className="flex items-center gap-2 transition-transform duration-200 hover:scale-105">
             <Settings className="w-4 h-4" />
             Advanced
           </TabsTrigger>
@@ -145,7 +145,7 @@ export function SettingsScreen() {
 
         {/* Audio Settings */}
         <TabsContent value="audio" className="space-y-6">
-          <Card className="p-6 space-y-6">
+          <Card className="p-6 space-y-6 transition-transform duration-200 hover:scale-[1.01]">
             <div className="flex items-center gap-2 mb-4">
               <Mic className="w-5 h-5 text-primary" />
               <h3 className="text-lg font-semibold">Audio Configuration</h3>
@@ -203,184 +203,17 @@ export function SettingsScreen() {
                   />
                 </div>
               </div>
-
-              <div className="pt-4">
-                <Button variant="outline" onClick={handleTestMicrophone}>
-                  <Volume2 className="w-4 h-4 mr-2" />
-                  Test Microphone
-                </Button>
-              </div>
             </div>
           </Card>
 
-          <Card className="p-6 space-y-6">
+          <Card className="p-6 space-y-6 transition-transform duration-200 hover:scale-[1.01]">
             <div className="flex items-center gap-2 mb-4">
-              <Languages className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Language Settings</h3>
+              <Volume2 className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold">Playback Settings</h3>
             </div>
-
             <div className="space-y-4">
-              <div>
-                <Label className="text-sm font-medium mb-2 block">Primary Language</Label>
-                <Select
-                  value={settings.primaryLanguage}
-                  onValueChange={(value) => updateSetting("primaryLanguage", value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {languages.map((lang) => (
-                      <SelectItem key={lang.value} value={lang.value}>
-                        <div className="flex items-center gap-2">
-                          <span>{lang.flag}</span>
-                          <span>{lang.label}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
               <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Auto-detect Language</Label>
-                  <p className="text-xs text-muted-foreground">Automatically identify spoken language</p>
-                </div>
-                <Switch
-                  checked={settings.autoDetectLanguage}
-                  onCheckedChange={(checked) => updateSetting("autoDetectLanguage", checked)}
-                />
-              </div>
-
-              <div>
-                <Label className="text-sm font-medium mb-2 block">Fallback Language</Label>
-                <Select
-                  value={settings.fallbackLanguage}
-                  onValueChange={(value) => updateSetting("fallbackLanguage", value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {languages.map((lang) => (
-                      <SelectItem key={lang.value} value={lang.value}>
-                        <div className="flex items-center gap-2">
-                          <span>{lang.flag}</span>
-                          <span>{lang.label}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </Card>
-        </TabsContent>
-
-        {/* AI Settings */}
-        <TabsContent value="ai" className="space-y-6">
-          <Card className="p-6 space-y-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Bot className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">AI Model Configuration</h3>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <Label className="text-sm font-medium mb-2 block">AI Model</Label>
-                <Select value={settings.aiModel} onValueChange={(value) => updateSetting("aiModel", value)}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {aiModels.map((model) => (
-                      <SelectItem key={model.value} value={model.value}>
-                        <div className="flex items-center justify-between w-full">
-                          <div>
-                            <div className="font-medium">{model.label}</div>
-                            <div className="text-xs text-muted-foreground">{model.description}</div>
-                          </div>
-                          <Badge variant="outline" className="text-xs">
-                            {model.size}
-                          </Badge>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label className="text-sm font-medium mb-2 block">Model Source Priority</Label>
-                <Select value={settings.aiModelSource} onValueChange={(value) => updateSetting("aiModelSource", value)}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="website">Website (Primary)</SelectItem>
-                    <SelectItem value="drive">Google Drive (Fallback)</SelectItem>
-                    <SelectItem value="local">Local Only</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label className="text-sm font-medium mb-2 block">Custom Model URL</Label>
-                <Input
-                  value={settings.customModelUrl}
-                  onChange={(e) => updateSetting("customModelUrl", e.target.value)}
-                  placeholder="https://your-model-source.com"
-                />
-                <p className="text-xs text-muted-foreground mt-1">Primary source for downloading AI models</p>
-              </div>
-
-              <div>
-                <Label className="text-sm font-medium mb-2 block">Drive Backup URL</Label>
-                <Input
-                  value={settings.driveBackupUrl}
-                  onChange={(e) => updateSetting("driveBackupUrl", e.target.value)}
-                  placeholder="Google Drive link"
-                />
-                <p className="text-xs text-muted-foreground mt-1">Fallback source if primary URL fails</p>
-              </div>
-
-              <div className="pt-4">
-                <Button variant="outline" onClick={() => handleDownloadModel(settings.aiModel)}>
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Selected Model
-                </Button>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 space-y-6">
-            <h3 className="text-lg font-semibold">AI Behavior</h3>
-
-            <div className="space-y-4">
-              <div>
-                <Label className="text-sm font-medium">Response Speed</Label>
-                <div className="mt-2">
-                  <Slider
-                    value={settings.aiResponseSpeed}
-                    onValueChange={(value) => updateSetting("aiResponseSpeed", value)}
-                    max={100}
-                    step={1}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>Accurate</span>
-                    <span>{settings.aiResponseSpeed[0]}%</span>
-                    <span>Fast</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Voice Response</Label>
-                  <p className="text-xs text-muted-foreground">AI speaks responses aloud</p>
-                </div>
+                <Label className="text-sm font-medium">Enable Voice Response</Label>
                 <Switch
                   checked={settings.enableVoiceResponse}
                   onCheckedChange={(checked) => updateSetting("enableVoiceResponse", checked)}
@@ -390,97 +223,146 @@ export function SettingsScreen() {
           </Card>
         </TabsContent>
 
-        {/* Privacy Settings */}
-        <TabsContent value="privacy" className="space-y-6">
-          <Card className="p-6 space-y-6">
+        {/* AI Settings */}
+        <TabsContent value="ai" className="space-y-6">
+          <Card className="p-6 space-y-6 transition-transform duration-200 hover:scale-[1.01]">
             <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Privacy & Security</h3>
+              <Bot className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold">AI Model Configuration</h3>
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Local Processing Only</Label>
-                  <p className="text-xs text-muted-foreground">All data stays on your device</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Switch
-                    checked={settings.localProcessing}
-                    onCheckedChange={(checked) => updateSetting("localProcessing", checked)}
-                  />
-                  {settings.localProcessing && <CheckCircle className="w-4 h-4 text-green-500" />}
-                </div>
+              <div>
+                <Label className="text-sm font-medium">AI Model</Label>
+                <Select
+                  value={settings.aiModel}
+                  onValueChange={(value) => updateSetting("aiModel", value)}
+                >
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select AI Model" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {aiModels.map((model) => (
+                      <SelectItem key={model.value} value={model.value}>
+                        <div className="flex items-center justify-between">
+                          <span>{model.label}</span>
+                          <Badge variant="secondary">{model.size}</Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{model.description}</p>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
-                <Label className="text-sm font-medium">Data Retention (days)</Label>
-                <div className="mt-2">
+                <Label className="text-sm font-medium">AI Model Source</Label>
+                <Select
+                  value={settings.aiModelSource}
+                  onValueChange={(value) => updateSetting("aiModelSource", value)}
+                >
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select AI Model Source" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="website">Website</SelectItem>
+                    <SelectItem value="local">Local</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {settings.aiModelSource === "local" && (
+                <div>
+                  <Label className="text-sm font-medium">Custom Model URL</Label>
+                  <Input
+                    type="text"
+                    value={settings.customModelUrl}
+                    onChange={(e) => updateSetting("customModelUrl", e.target.value)}
+                    placeholder="Enter custom model URL"
+                  />
+                </div>
+              )}
+
+              {settings.aiModelSource === "website" && (
+                <div>
+                  <Label className="text-sm font-medium">Drive Backup URL</Label>
+                  <Input
+                    type="text"
+                    value={settings.driveBackupUrl}
+                    onChange={(e) => updateSetting("driveBackupUrl", e.target.value)}
+                    placeholder="Enter Google Drive backup URL"
+                  />
+                </div>
+              )}
+
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-medium">AI Response Speed</Label>
+                <div className="w-1/2">
                   <Slider
-                    value={settings.dataRetention}
-                    onValueChange={(value) => updateSetting("dataRetention", value)}
-                    max={365}
-                    min={1}
+                    value={settings.aiResponseSpeed}
+                    onValueChange={(value) => updateSetting("aiResponseSpeed", value)}
+                    max={100}
                     step={1}
                     className="w-full"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>1 day</span>
-                    <span>{settings.dataRetention[0]} days</span>
-                    <span>1 year</span>
+                    <span>Slow</span>
+                    <span>{settings.aiResponseSpeed[0]}%</span>
+                    <span>Fast</span>
                   </div>
                 </div>
               </div>
 
+              <Button onClick={() => handleDownloadModel(settings.aiModel)} className="w-full transition-transform duration-200 hover:scale-105">
+                <Download className="w-4 h-4 mr-2" /> Download Selected Model
+              </Button>
+            </div>
+          </Card>
+        </TabsContent>
+
+        {/* Privacy Settings */}
+        <TabsContent value="privacy" className="space-y-6">
+          <Card className="p-6 space-y-6 transition-transform duration-200 hover:scale-[1.01]">
+            <div className="flex items-center gap-2 mb-4">
+              <Shield className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold">Data Privacy</h3>
+            </div>
+
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Anonymize Data</Label>
-                  <p className="text-xs text-muted-foreground">Remove personal identifiers</p>
+                <Label className="text-sm font-medium">Local Processing Only</Label>
+                <Switch
+                  checked={settings.localProcessing}
+                  onCheckedChange={(checked) => updateSetting("localProcessing", checked)}
+                />
+              </div>
+
+              <div>
+                <Label className="text-sm font-medium">Data Retention (days)</Label>
+                <Slider
+                  value={settings.dataRetention}
+                  onValueChange={(value) => updateSetting("dataRetention", value)}
+                  max={365}
+                  step={1}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                  <span>1 Day</span>
+                  <span>{settings.dataRetention[0]} Days</span>
+                  <span>365 Days</span>
                 </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-medium">Anonymize Data</Label>
                 <Switch
                   checked={settings.anonymizeData}
                   onCheckedChange={(checked) => updateSetting("anonymizeData", checked)}
                 />
               </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Call Transcription</Label>
-                  <p className="text-xs text-muted-foreground">Transcribe phone calls (requires permissions)</p>
-                </div>
-                <Switch
-                  checked={settings.callTranscription}
-                  onCheckedChange={(checked) => updateSetting("callTranscription", checked)}
-                />
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">Data Management</h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label className="text-sm font-medium">Storage Used</Label>
-                <div className="text-2xl font-bold text-primary">2.4 GB</div>
-                <p className="text-xs text-muted-foreground">Transcripts, models, and cache</p>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-sm font-medium">Total Transcripts</Label>
-                <div className="text-2xl font-bold text-primary">127</div>
-                <p className="text-xs text-muted-foreground">Across all languages</p>
-              </div>
-            </div>
-
-            <div className="flex gap-2 pt-4">
-              <Button variant="outline" onClick={handleClearData}>
-                <Trash2 className="w-4 h-4 mr-2" />
-                Clear All Data
-              </Button>
-              <Button variant="outline" onClick={handleExportSettings}>
-                <Download className="w-4 h-4 mr-2" />
-                Export Settings
+              <Button onClick={handleClearData} variant="destructive" className="w-full transition-transform duration-200 hover:scale-105">
+                <Trash2 className="w-4 h-4 mr-2" /> Clear All App Data
               </Button>
             </div>
           </Card>
@@ -488,165 +370,181 @@ export function SettingsScreen() {
 
         {/* Advanced Settings */}
         <TabsContent value="advanced" className="space-y-6">
-          <Card className="p-6 space-y-6">
+          <Card className="p-6 space-y-6 transition-transform duration-200 hover:scale-[1.01]">
             <div className="flex items-center gap-2 mb-4">
               <Settings className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Advanced Configuration</h3>
+              <h3 className="text-lg font-semibold">General</h3>
             </div>
 
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium">Confidence Threshold (%)</Label>
-                <div className="mt-2">
-                  <Slider
-                    value={settings.confidenceThreshold}
-                    onValueChange={(value) => updateSetting("confidenceThreshold", value)}
-                    max={100}
-                    min={50}
-                    step={1}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>50%</span>
-                    <span>{settings.confidenceThreshold[0]}%</span>
-                    <span>100%</span>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">Minimum confidence to display transcribed text</p>
+                <Label className="text-sm font-medium">Primary Language</Label>
+                <Select
+                  value={settings.primaryLanguage}
+                  onValueChange={(value) => updateSetting("primaryLanguage", value)}
+                >
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select primary language" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {languages.map((lang) => (
+                      <SelectItem key={lang.value} value={lang.value}>
+                        {lang.flag} {lang.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-medium">Auto Detect Language</Label>
+                <Switch
+                  checked={settings.autoDetectLanguage}
+                  onCheckedChange={(checked) => updateSetting("autoDetectLanguage", checked)}
+                />
               </div>
 
               <div>
-                <Label className="text-sm font-medium mb-2 block">Punctuation Mode</Label>
+                <Label className="text-sm font-medium">Fallback Language</Label>
+                <Select
+                  value={settings.fallbackLanguage}
+                  onValueChange={(value) => updateSetting("fallbackLanguage", value)}
+                >
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select fallback language" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {languages.map((lang) => (
+                      <SelectItem key={lang.value} value={lang.value}>
+                        {lang.flag} {lang.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-medium">Auto Save Transcriptions</Label>
+                <Switch
+                  checked={settings.autoSave}
+                  onCheckedChange={(checked) => updateSetting("autoSave", checked)}
+                />
+              </div>
+
+              <div>
+                <Label className="text-sm font-medium">Save Interval (seconds)</Label>
+                <Slider
+                  value={settings.saveInterval}
+                  onValueChange={(value) => updateSetting("saveInterval", value)}
+                  max={300}
+                  step={1}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                  <span>10s</span>
+                  <span>{settings.saveInterval[0]}s</span>
+                  <span>300s</span>
+                </div>
+              </div>
+
+              <div>
+                <Label className="text-sm font-medium">Confidence Threshold</Label>
+                <Slider
+                  value={settings.confidenceThreshold}
+                  onValueChange={(value) => updateSetting("confidenceThreshold", value)}
+                  max={100}
+                  step={1}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                  <span>0%</span>
+                  <span>{settings.confidenceThreshold[0]}%</span>
+                  <span>100%</span>
+                </div>
+              </div>
+
+              <div>
+                <Label className="text-sm font-medium">Punctuation Mode</Label>
                 <Select
                   value={settings.punctuationMode}
                   onValueChange={(value) => updateSetting("punctuationMode", value)}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select punctuation mode" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="auto">Automatic</SelectItem>
-                    <SelectItem value="manual">Manual Only</SelectItem>
+                    <SelectItem value="manual">Manual</SelectItem>
                     <SelectItem value="none">None</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label className="text-sm font-medium mb-2 block">Timestamp Format</Label>
+                <Label className="text-sm font-medium">Timestamp Format</Label>
                 <Select
                   value={settings.timestampFormat}
                   onValueChange={(value) => updateSetting("timestampFormat", value)}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select timestamp format" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="12hour">12-hour (2:30 PM)</SelectItem>
-                    <SelectItem value="24hour">24-hour (14:30)</SelectItem>
-                    <SelectItem value="relative">Relative (2m 30s)</SelectItem>
+                    <SelectItem value="12hour">12-hour</SelectItem>
+                    <SelectItem value="24hour">24-hour</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Auto-save Transcripts</Label>
-                  <p className="text-xs text-muted-foreground">Automatically save during recording</p>
-                </div>
-                <Switch checked={settings.autoSave} onCheckedChange={(checked) => updateSetting("autoSave", checked)} />
-              </div>
-
-              {settings.autoSave && (
-                <div>
-                  <Label className="text-sm font-medium">Save Interval (seconds)</Label>
-                  <div className="mt-2">
-                    <Slider
-                      value={settings.saveInterval}
-                      onValueChange={(value) => updateSetting("saveInterval", value)}
-                      max={300}
-                      min={10}
-                      step={10}
-                      className="w-full"
-                    />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>10s</span>
-                      <span>{settings.saveInterval[0]}s</span>
-                      <span>5m</span>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <Button onClick={handleResetSettings} variant="outline" className="w-full transition-transform duration-200 hover:scale-105">
+                <RefreshCw className="w-4 h-4 mr-2" /> Reset All Settings
+              </Button>
             </div>
           </Card>
 
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">Export Settings</h3>
+          <Card className="p-6 space-y-6 transition-transform duration-200 hover:scale-[1.01]">
+            <div className="flex items-center gap-2 mb-4">
+              <Download className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold">Export Options</h3>
+            </div>
 
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium mb-2 block">Default Export Format</Label>
+                <Label className="text-sm font-medium">Default Export Format</Label>
                 <Select
                   value={settings.defaultExportFormat}
                   onValueChange={(value) => updateSetting("defaultExportFormat", value)}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
+                  <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
+                    <SelectValue placeholder="Select export format" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="txt">Plain Text (.txt)</SelectItem>
-                    <SelectItem value="pdf">PDF Document (.pdf)</SelectItem>
-                    <SelectItem value="docx">Word Document (.docx)</SelectItem>
-                    <SelectItem value="json">JSON Data (.json)</SelectItem>
+                    <SelectItem value="srt">SRT (.srt)</SelectItem>
+                    <SelectItem value="vtt">VTT (.vtt)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium">Include Timestamps</Label>
-                  <Switch
-                    checked={settings.includeTimestamps}
-                    onCheckedChange={(checked) => updateSetting("includeTimestamps", checked)}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium">Include Confidence</Label>
-                  <Switch
-                    checked={settings.includeConfidence}
-                    onCheckedChange={(checked) => updateSetting("includeConfidence", checked)}
-                  />
-                </div>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">System</h3>
-
-            <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium">Battery Optimization</Label>
-                  <p className="text-xs text-muted-foreground">Reduce power consumption</p>
-                </div>
+                <Label className="text-sm font-medium">Include Timestamps</Label>
                 <Switch
-                  checked={settings.batteryOptimization}
-                  onCheckedChange={(checked) => updateSetting("batteryOptimization", checked)}
+                  checked={settings.includeTimestamps}
+                  onCheckedChange={(checked) => updateSetting("includeTimestamps", checked)}
                 />
               </div>
 
-              <div className="flex gap-2 pt-4">
-                <Button variant="outline" onClick={handleResetSettings}>
-                  <RefreshCw className="w-4 h-4 mr-2" />
-                  Reset to Defaults
-                </Button>
-                <Button variant="outline">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  View Logs
-                </Button>
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-medium">Include Confidence Scores</Label>
+                <Switch
+                  checked={settings.includeConfidence}
+                  onCheckedChange={(checked) => updateSetting("includeConfidence", checked)}
+                />
               </div>
+
+              <Button onClick={handleExportSettings} className="w-full transition-transform duration-200 hover:scale-105">
+                <ExternalLink className="w-4 h-4 mr-2" /> Export Current Settings
+              </Button>
             </div>
           </Card>
         </TabsContent>

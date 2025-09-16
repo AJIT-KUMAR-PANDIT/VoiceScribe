@@ -169,7 +169,7 @@ export function TranscriptionScreen() {
   `;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 transition-colors duration-300">
       <style>{styles}</style>
 
       {/* Header */}
@@ -183,13 +183,13 @@ export function TranscriptionScreen() {
       </div>
 
       {/* Language Selection */}
-      <Card className="p-4">
+      <Card className="p-4 transition-transform duration-200 hover:scale-[1.01]">
         <div className="flex items-center justify-between">
           <label className="text-sm font-medium text-foreground">
             Select Language:
           </label>
           <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger className="w-64">
+            <SelectTrigger className="w-64 transition-transform duration-200 hover:scale-[1.01]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -270,7 +270,7 @@ export function TranscriptionScreen() {
       </div>
 
       {/* Recording Controls */}
-      <Card className="p-6">
+      <Card className="p-6 transition-transform duration-200 hover:scale-[1.01]">
         <div className="flex flex-col items-center space-y-4">
           {/* Recording Status */}
           <div className="flex items-center gap-4">
@@ -295,7 +295,7 @@ export function TranscriptionScreen() {
           {/* Secondary Controls */}
           {isRecording && (
             <div className="flex gap-2">
-              <Button variant="outline" size="sm" onClick={handlePauseResume}>
+              <Button variant="outline" size="sm" onClick={handlePauseResume} className="transition-transform duration-200 hover:scale-105">
                 {isPaused ? (
                   <Play className="w-4 h-4" />
                 ) : (
@@ -309,7 +309,7 @@ export function TranscriptionScreen() {
       </Card>
 
       {/* Live Transcript Display */}
-      <Card className="glass-card p-6 border-white/20">
+      <Card className="glass-card p-6 border-white/20 transition-transform duration-200 hover:scale-[1.01]">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-semibold ">Live Transcript</h3>
@@ -319,7 +319,7 @@ export function TranscriptionScreen() {
                 size="sm"
                 onClick={handleSaveTranscript}
                 disabled={!transcript}
-                className="bg-white/10 border-white/30  hover:bg-white/20 disabled:opacity-50"
+                className="bg-white/10 border-white/30  hover:bg-white/20 disabled:opacity-50 transition-transform duration-200 hover:scale-105"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save
@@ -329,7 +329,7 @@ export function TranscriptionScreen() {
                 size="sm"
                 onClick={handleClearTranscript}
                 disabled={!transcript}
-                className="bg-white/10 border-white/30  hover:bg-white/20 disabled:opacity-50"
+                className="bg-white/10 border-white/30  hover:bg-white/20 disabled:opacity-50 transition-transform duration-200 hover:scale-105"
               >
                 <Trash2 className="w-4 h-4 mr-2" />
                 Clear
@@ -378,14 +378,14 @@ export function TranscriptionScreen() {
       <div className="grid grid-cols-2 gap-4">
         <Button
           variant="outline"
-          className="h-14 bg-white/10 border-white/30   text-lg"
+          className="h-14 bg-white/10 border-white/30   text-lg transition-transform duration-200 hover:scale-105"
         >
           <Volume2 className="w-5 h-5 mr-3" />
           Play Back
         </Button>
         <Button
           variant="outline"
-          className="h-14 bg-white/10 border-white/30   text-lg"
+          className="h-14 bg-white/10 border-white/30   text-lg transition-transform duration-200 hover:scale-105"
         >
           <Mic className="w-5 h-5 mr-3" />
           Voice Commands

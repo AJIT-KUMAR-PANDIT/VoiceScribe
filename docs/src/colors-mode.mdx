@@ -1,0 +1,78 @@
+# Color Modes Documentation
+
+This document outlines the implementation and usage of color modes within the application.
+
+## Overview
+
+The application supports multiple color modes (e.g., light, dark) to provide a personalized user experience and improve accessibility. The color modes are managed globally and can be switched by the user through the application settings.
+
+## Implementation Details
+
+Color modes are implemented using CSS variables and Tailwind CSS classes. A `ThemeProvider` component is used to wrap the application and provide the current theme to all child components. The theme can be accessed via a React context.
+
+### ThemeProvider
+
+The `ThemeProvider` component is responsible for:
+
+- Detecting the user's preferred color scheme (system preference).
+- Storing and managing the current color mode state.
+- Applying the appropriate CSS classes to the `body` element.
+- Providing a context for child components to access and update the color mode.
+
+### CSS Variables
+
+CSS variables are used to define color palettes for each theme. These variables are defined in `globals.css` and are scoped to the `html` element. For example:
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  /* ... other light mode variables ... */
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 20% 98%;
+  /* ... other dark mode variables ... */
+}
+```
+
+### Tailwind CSS Configuration
+
+Tailwind CSS is configured to use these CSS variables, allowing for easy theming of components. The `tailwind.config.js` file is set up to extend the default theme with custom colors that reference the CSS variables.
+
+## Usage
+
+To use color-aware styles in your components:
+
+1. **Apply Tailwind CSS classes**: Use standard Tailwind CSS classes for colors (e.g., `bg-background`, `text-foreground`, `border-primary`). These classes will automatically resolve to the correct CSS variable based on the active theme.
+
+2. **Accessing Theme in Components**: If you need to programmatically access the current theme or provide a theme toggle, you can use the `useTheme` hook provided by the `ThemeProvider` (if available, or implement a similar context consumer).
+
+```jsx
+import { useTheme } from '@/components/theme-provider'; // Example path
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+    </button>
+  );
+}
+```
+
+## Adding New Color Modes
+
+To add a new color mode:
+
+1. **Define CSS Variables**: Add a new class (e.g., `.sepia`) to `globals.css` and define the corresponding CSS variables for your new color palette.
+
+2. **Update ThemeProvider**: Modify the `ThemeProvider` to recognize and manage the new color mode. This typically involves updating the allowed theme values and the logic for applying the theme class to the `body`.
+
+3. **Update Tailwind Config**: If necessary, update `tailwind.config.js` to include any specific color mappings for the new theme.

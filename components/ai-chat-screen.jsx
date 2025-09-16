@@ -113,7 +113,7 @@ export function AIChatScreen() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-background">
+    <div className="flex flex-col h-screen bg-background transition-colors duration-300">
       {/* Header */}
       <div className="p-4 sm:p-6 border-b border-border bg-card">
         <div className="text-center mb-4">
@@ -134,7 +134,7 @@ export function AIChatScreen() {
               value={selectedTranscript}
               onValueChange={setSelectedTranscript}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
                 <SelectValue placeholder="Choose transcript" />
               </SelectTrigger>
               <SelectContent>
@@ -157,7 +157,7 @@ export function AIChatScreen() {
               AI Mode:
             </label>
             <Select value={aiMode} onValueChange={setAiMode}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full transition-transform duration-200 hover:scale-[1.01]">
                 <SelectValue placeholder="Choose mode" />
               </SelectTrigger>
               <SelectContent>
@@ -183,9 +183,7 @@ export function AIChatScreen() {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`flex gap-2 sm:gap-3 ${
-              msg.type === "user" ? "justify-end" : "justify-start"
-            }`}
+            className={`flex gap-2 sm:gap-3 ${msg.type === "user" ? "justify-end" : "justify-start"} transition-all duration-300`}
           >
             {/* Avatar */}
             {msg.type !== "user" && (
@@ -198,18 +196,10 @@ export function AIChatScreen() {
 
             {/* Bubble */}
             <div
-              className={`max-w-[90%] sm:max-w-[75%] md:max-w-[65%] ${
-                msg.type === "user" ? "order-2" : ""
-              }`}
+              className={`max-w-[90%] sm:max-w-[75%] md:max-w-[65%] ${msg.type === "user" ? "order-2" : ""} transition-transform duration-200 hover:scale-[1.01]`}
             >
               <Card
-                className={`p-2 sm:p-3 text-sm sm:text-base ${
-                  msg.type === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : msg.type === "system"
-                    ? "bg-muted text-foreground"
-                    : "bg-card"
-                }`}
+                className={`p-2 sm:p-3 text-sm sm:text-base ${msg.type === "user" ? "bg-primary text-primary-foreground" : msg.type === "system" ? "bg-muted text-foreground" : "bg-card"}`}
               >
                 <p className="whitespace-pre-wrap">{msg.content}</p>
               </Card>
@@ -243,7 +233,7 @@ export function AIChatScreen() {
           <Button
             onClick={handleSendMessage}
             disabled={!inputMessage.trim()}
-            className="h-10 sm:h-11 px-3 sm:px-4"
+            className="h-10 sm:h-11 px-3 sm:px-4 transition-transform duration-200 hover:scale-105"
           >
             <Send className="w-4 h-4" />
           </Button>

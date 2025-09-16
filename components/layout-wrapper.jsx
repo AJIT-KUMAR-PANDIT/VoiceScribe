@@ -38,9 +38,9 @@ export function LayoutWrapper({ children }) {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Status Bar */}
-      <div className="hidden md:flex fixed top-0 left-0 right-0 h-8 bg-card border-b border-border z-50 items-center justify-between px-4 text-xs">
+      <div className="hidden md:flex fixed top-0 left-0 right-0 h-8 bg-card border-b border-border z-50 items-center justify-between px-4 text-xs transition-all duration-300">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1">
             {isOnline ? <Wifi className="w-3 h-3 text-green-500" /> : <WifiOff className="w-3 h-3 text-red-500" />}
@@ -54,7 +54,7 @@ export function LayoutWrapper({ children }) {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" className="h-6 px-2" onClick={() => setIsMuted(!isMuted)}>
+          <Button variant="ghost" size="sm" className="h-6 px-2 transition-transform duration-200 hover:scale-105" onClick={() => setIsMuted(!isMuted)}>
             {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
           </Button>
 
@@ -70,7 +70,7 @@ export function LayoutWrapper({ children }) {
         {notifications.map((notification) => (
           <Card
             key={notification.id}
-            className={`p-3 shadow-lg animate-in slide-in-from-right ${
+            className={`p-3 shadow-lg animate-in slide-in-from-right transition-transform duration-200 hover:scale-[1.01] ${
               notification.type === "error"
                 ? "border-destructive"
                 : notification.type === "success"
@@ -97,7 +97,7 @@ export function LayoutWrapper({ children }) {
       {/* Offline Banner */}
       {!isOnline && (
         <div className="fixed bottom-20 md:bottom-4 left-4 right-4 z-40">
-          <Card className="p-3 bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
+          <Card className="p-3 bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800 transition-transform duration-200 hover:scale-[1.01]">
             <div className="flex items-center gap-2">
               <WifiOff className="w-4 h-4 text-yellow-600" />
               <p className="text-sm text-yellow-800 dark:text-yellow-200">
