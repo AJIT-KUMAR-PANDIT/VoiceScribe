@@ -16,9 +16,9 @@
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-mesh: radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%),
-                   radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%),
-                   radial-gradient(at 0% 50%, hsla(355,100%,93%,1) 0px, transparent 50%);
+  --gradient-mesh: radial-gradient(at 40% 20%, hsla(28, 100%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%);
 }
 
 .dark {
@@ -101,6 +101,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -108,30 +109,65 @@
 
 /* Custom Animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotateX(0deg); }
-  50% { transform: translateY(-20px) rotateX(5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotateX(5deg);
+  }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
-  50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.8), 0 0 60px rgba(6, 182, 212, 0.4); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.8), 0 0 60px rgba(6, 182, 212, 0.4);
+  }
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes wave {
-  0% { transform: scaleY(1); }
-  50% { transform: scaleY(1.5); }
-  100% { transform: scaleY(1); }
+  0% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(1.5);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
 }
 
 @keyframes rotate-3d {
-  0% { transform: perspective(1000px) rotateY(0deg); }
-  100% { transform: perspective(1000px) rotateY(360deg); }
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(1000px) rotateY(360deg);
+  }
 }
 
 @keyframes slide-in-3d {
@@ -139,6 +175,7 @@
     transform: perspective(1000px) translateZ(-100px) translateX(-100%);
     opacity: 0;
   }
+
   to {
     transform: perspective(1000px) translateZ(0) translateX(0);
     opacity: 1;
@@ -147,14 +184,14 @@
 
 /* Glassmorphism Effect */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.666);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.751);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -217,19 +254,27 @@
 
 /* Responsive Font Sizes */
 @media (max-width: 640px) {
-  html { font-size: 14px; }
+  html {
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
-  html { font-size: 15px; }
+  html {
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1920px) {
-  html { font-size: 16px; }
+  html {
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 1921px) {
-  html { font-size: 18px; }
+  html {
+    font-size: 18px;
+  }
 }
 
 /* TV/Large Screen Optimizations */
@@ -237,11 +282,11 @@
   .tv-scale {
     transform: scale(1.2);
   }
-  
+
   .tv-padding {
     padding: 3rem;
   }
-  
+
   .tv-text {
     font-size: 1.25rem;
     line-height: 1.8;
