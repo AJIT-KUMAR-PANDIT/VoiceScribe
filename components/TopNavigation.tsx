@@ -2,16 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Moon, Sun, Palette } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { useThemeColor } from '@/components/theme-color-provider';
-import { ColorPicker } from "./ui/color-picker";
 
 export function TopNavigation() {
   const { setTheme } = useTheme();
-  const { setThemeColor } = useThemeColor();
 
   return (
     <nav className="flex items-center justify-between p-4 bg-background border-b border-border transition-colors duration-300">
@@ -39,14 +36,8 @@ export function TopNavigation() {
             <DropdownMenuItem onClick={() => setTheme("system")}>
               System
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <ColorPicker />
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-
-        {/* Color Picker for Colorful Mode */}
-        
       </div>
     </nav>
   );
